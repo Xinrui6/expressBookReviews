@@ -11,4 +11,27 @@ let books = {
       10: {"author": "Samuel Beckett","title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
 }
 
-module.exports=books;
+// Function to add a book review
+const addReview = (review) => {
+const { isbn, username, review: userReview } = review;
+const book = books[isbn];
+  
+if (!book) {
+      throw new Error("Book not found");
+}
+  book.reviews.push({ username, review: userReview });
+};
+  
+// Function to find a book review by ISBN and username
+const findReviewByISBNAndUsername = (isbn, username) => {
+const book = books[isbn];
+if (!book) {
+      throw new Error("Book not found");
+}
+return book.reviews.find((review) => review.username === username);
+};
+  
+// Export the books object and functions
+module.exports.books = books;
+module.exports.addReview = addReview;
+module.exports.findReviewByISBNAndUsername = findReviewByISBNAndUsername;
