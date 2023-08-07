@@ -1,10 +1,10 @@
 const express = require('express');
 const axios = require('axios');
-let books = require("./booksdb.js");
-let isValid = require("./auth_users.js").isValid;
-let users = require("./auth_users.js").users;
-const public_users = express.Router();
+const books = require("./booksdb.js");
+const isValid = require("./auth_users.js").isValid;
+const users = require("./auth_users.js").users;
 
+const public_users = express.Router();
 
 public_users.post("/register", (req, res) => {
   const { username, password } = req.body;
@@ -132,5 +132,5 @@ public_users.get('/isbn/:isbn', async function (req, res) {
       throw new Error("Failed to fetch book details");
     }
   }
-
+  
 module.exports.general = public_users;
